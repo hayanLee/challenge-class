@@ -1,0 +1,16 @@
+.ground {
+    width: 900px;
+    height: 900px;
+    background-image: url('../../assets/grass.png');
+    margin: 0 auto;
+    position: relative;
+}
+.pikachu {
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    background-image: url('../../assets/pikachu.png');
+    background-size: cover;
+    top: 0;
+    left: 0;
+}
