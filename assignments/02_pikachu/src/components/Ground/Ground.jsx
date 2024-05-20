@@ -9,71 +9,82 @@ export default function Ground() {
         isJumping: false,
     });
     const pikachuRef = useRef(null);
-    const step = 90;
+    const STEP = 90;
 
     useEffect(() => {
         function handleKeyDown(e) {
-            let newTop = position.top;
-            let newLeft = position.left;
-            let newIsRight = position.isRight;
-            let newIsJumping = position.isJumping;
-            const target = pikachuRef.current;
-
-            switch (e.code) {
-                case 'ArrowUp':
-                    newTop = Math.max(0, newTop - step);
-                    break;
-                case 'ArrowDown':
-                    newTop = Math.min(810, newTop + step);
-                    break;
-                case 'ArrowLeft':
-                    newLeft = Math.max(0, newLeft - step);
-                    if (position.isRight) {
-                        target.style.transform = 'scale(-1, 1)';
-                        target.style.transition = '0.2s';
-                        newIsRight = false;
-                    }
-                    break;
-                case 'ArrowRight':
-                    newLeft = Math.min(810, newLeft + step);
-                    if (!position.isRight) {
-                        target.style.transform = 'scale(1, 1)';
-                        target.style.transition = '0.2s';
-                        newIsRight = true;
-                    }
-                    break;
-                case 'Space':
-                    if (!position.isJumping) {
-                        newIsJumping = true;
-                        let initPosition = position.top; // 처음 top
-                        newTop = Math.max(0, position.top - 15); // 점프 후 top
-                        setTimeout(() => {
-                            setPosition((prev) => ({
-                                ...prev,
-                                top: initPosition,
-                                isJumping: false,
-                            }));
-                        }, 200);
-                    }
-                    break;
-                default:
-                    return;
-            }
-
-            setPosition({
-                top: newTop,
-                left: newLeft,
-                isRight: newIsRight,
-                isJumping: newIsJumping,
-            });
-            target.style.top = `${newTop}px`;
-            target.style.left = `${newLeft}px`;
+            handleMovement(e);
         }
-
         window.addEventListener('keydown', handleKeyDown);
 
         return () => window.removeEventListener('keydown', handleKeyDown);
     }, [position]);
+
+    const handleMovement = (e) => {
+        let newTop = position.top;
+        let newLeft = position.left;
+        let newIsRight = position.isRight;
+        let newIsJumping = position.isJumping;
+        const target = pikachuRef.current;
+
+        switch (e.code) {
+            case 'ArrowUp':
+                newTop = Math.max(0, newTop - STEP);
+                break;
+            case 'ArrowDown':
+                newTop = Math.min(810, newTop + STEP);
+                break;
+            case 'ArrowLeft':
+                newLeft = Math.max(0, newLeft - STEP);
+                if (position.isRight) {
+                    flipPikachu(false);
+                    newIsRight = false;
+                }
+                break;
+            case 'ArrowRight':
+                newLeft = Math.min(810, newLeft + STEP);
+                if (!position.isRight) {
+                    flipPikachu(true);
+                    newIsRight = true;
+                }
+                break;
+            case 'Space':
+                if (!position.isJumping) {
+                    newIsJumping = true;
+                    let initPosition = position.top; // 처음 top
+                    newTop = Math.max(0, position.top - 15); // 점프 후 top
+                    setTimeout(() => {
+                        setPosition((prev) => ({
+                            ...prev,
+                            top: initPosition,
+                            isJumping: false,
+                        }));
+                    }, 200);
+                }
+                break;
+            default:
+                return;
+        }
+
+        setPosition({
+            top: newTop,
+            left: newLeft,
+            isRight: newIsRight,
+            isJumping: newIsJumping,
+        });
+        movePikachu(target, newTop, newLeft);
+    };
+
+    const movePikachu = (target, newTop, newLeft) => {
+        target.style.top = `${newTop}px`;
+        target.style.left = `${newLeft}px`;
+    };
+
+    const flipPikachu = (isRight) => {
+        const target = pikachuRef.current;
+        target.style.transform = isRight ? 'scale(1, 1)' : 'scale(-1, 1)';
+        target.style.transition = '0.2s';
+    };
 
     return (
         <div className='ground'>
