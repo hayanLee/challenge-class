@@ -14,6 +14,7 @@ const GlobalStyle = createGlobalStyle`
     }
     html, body{
         height: 100%;
+        line-height: 1.15;
     }
     body{
        margin: 0;

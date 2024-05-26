@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import MemoCard from '../MemoCard/MemoCard';
 
@@ -12,23 +13,13 @@ const StWrapper = styled.ul`
     height: 100%;
 `;
 
-const test = [
-    { id: 1 },
-    { id: 2 },
-    { id: 3 },
-    { id: 4 },
-    { id: 5 },
-    { id: 5 },
-    { id: 6 },
-    { id: 7 },
-    { id: 8 },
-];
 export default function MemoList() {
+    const memoList = useSelector((state) => state.memo.memoList);
     return (
         <StWrapper>
-            {test.map((memo) => (
+            {memoList.map((memo) => (
                 <li key={memo.id}>
-                    <MemoCard />
+                    <MemoCard memo={memo} />
                 </li>
             ))}
         </StWrapper>
