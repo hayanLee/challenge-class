@@ -28,7 +28,10 @@ function memoReducer(prevState = initalState, action) {
         case SELECT_MEMO:
             return { ...prevState, selectedMemo: action.payload };
         case ADD_NEW_MEMO:
-            return { ...prevState, memoList: [...prevState.memoList, action.payload] };
+            return {
+                selectedMemo: action.payload.id,
+                memoList: [action.payload, ...prevState.memoList],
+            };
         case CHANGE_MEMO:
             return {
                 ...prevState,

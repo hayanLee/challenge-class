@@ -35,7 +35,7 @@ export default function MemoInput() {
     };
     useEffect(() => {
         ref.current.focus();
-    }, []);
+    }, [selectedMemoId]);
 
     return (
         <StWrapper>
