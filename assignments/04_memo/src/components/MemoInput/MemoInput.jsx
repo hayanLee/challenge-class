@@ -31,13 +31,12 @@ export default function MemoInput() {
     );
 
     const handleChange = (content) => {
-        dispatch(changeMemo(selectedMemoId, content));
+        dispatch(changeMemo(selectedMemoId, content ? content : '새로운 메모'));
     };
     useEffect(() => {
         ref.current.focus();
     }, []);
 
-    console.log(selectedMemo.content);
     return (
         <StWrapper>
             <StTimeStamp>
