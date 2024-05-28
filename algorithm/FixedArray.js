@@ -130,3 +130,26 @@ export class FixedArray {
         return acc;
     }
 }
+
+const fixedArray = new FixedArray(5);
+console.log('Initial array:', fixedArray.stringify());
+
+fixedArray.push(1);
+fixedArray.push(2);
+fixedArray.push(3);
+fixedArray.push(4);
+fixedArray.push(5);
+console.log(
+    'Filtered array (elements > 2):',
+    fixedArray.filter((x) => x > 2)
+); // [3, 4, 5]
+console.log(
+    'Mapped array (elements * 2):',
+    fixedArray.map((x) => x * 2)
+); // [2, 4, 6, 8, 10]
+
+const testArr = [];
+fixedArray.forEach((x) => testArr.push(x));
+console.log(testArr);
+
+const sum = fixedArray.reduce((acc, x) => acc + x, 0);
