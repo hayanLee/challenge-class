@@ -1,6 +1,8 @@
 import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
+${reset}
     :root{
         --bg-color : #fff;
         --border-color: rgb(230, 230, 230);
@@ -11,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
     }
     *{
         box-sizing: border-box;
+        list-style: none;
     }
     html, body{
         height: 100%;
