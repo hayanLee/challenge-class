@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux';
 import styled from 'styled-components';
-import MemoInput from './components/MemoInput/MemoInput';
-import MemoListContainer from './components/MemoListContainer';
+import MemoEditor from './components/MemoEditor/MemoEditor';
+import MemosWrapper from './components/MemosWrapper/MemosWrapper';
 import store from './redux/store';
 
 const StWrapContainer = styled.div`
@@ -22,8 +22,8 @@ function App() {
     return (
         <StWrapContainer>
             <Provider store={store}>
-                <MemoListContainer />
-                <MemoInput />
+                <MemosWrapper />
+                <MemoEditor />
             </Provider>
         </StWrapContainer>
     );

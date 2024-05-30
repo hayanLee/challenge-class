@@ -1,9 +1,9 @@
 import React, { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeMemo } from '../../redux/actions';
-import { StTextArea, StTimeStamp, StWrapper } from './MemoInput.styled';
+import { StTextArea, StTimeStamp, StWrapper } from './MemoEditor.styled';
 
-export default function MemoInput() {
+export default function MemoEditor() {
     const dispatch = useDispatch();
     const ref = useRef(null);
 

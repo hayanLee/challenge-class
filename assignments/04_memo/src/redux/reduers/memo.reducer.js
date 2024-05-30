@@ -41,15 +41,16 @@ function memoReducer(prevState = initalState, action) {
                         : memo
                 ),
             };
-        case DELETE_MEMO:
+        case DELETE_MEMO: {
             const updatedMemoList = prevState.memoList.filter(
                 (memo) => memo.id !== action.payload
             );
             return {
                 ...prevState,
                 memoList: updatedMemoList,
-                selectedMemo: updatedMemoList.length > 0 ? updatedMemoList[0].id : null,
+                selectedMemo: updatedMemoList[0].id,
             };
+        }
         default:
             return prevState;
     }
