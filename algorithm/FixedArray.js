@@ -72,10 +72,13 @@ export class FixedArray {
     // true 가 없으면 null 반환
     // [].find((item)=>item===1)
     find(predicate) {
-        for (let i = 0; i < this.#currentLength; i++) {
-            if (predicate(this.#array[i])) return this.#array[i];
-        }
-        return null;
+        // for (let i = 0; i < this.#currentLength; i++) {
+        //     if (predicate(this.#array[i])) return this.#array[i];
+        // }
+        // return null;
+        const findIdx = this.findIndex(predicate);
+        if (findIdx === -1) return null;
+        return this.#array[findIdx];
     }
 
     // 배열의 각 요소에 대해 predicate 결과가 true인 요소 중 제일 첫번째 요소의 index반환
@@ -123,8 +126,17 @@ export class FixedArray {
     // 배열의 각 요소에 대해 제공된 함수를 호출하여 누산기에 값을 축적
     // [].reduce((a,c) => a+c, [])
     reduce(callback, initValue) {
+        const len = this.getLength();
+        if (len === 0) return initValue;
+
+        let startIdx = 0;
+        if (initValue != 0 && !initValue) {
+            initValue = this.#array[0];
+            startIdx++;
+        }
+
         let acc = initValue; // 누적값 = 초기값
-        for (let i = 0; i < this.#currentLength; i++) {
+        for (let i = startIdx; i < len; i++) {
             acc = callback(acc, this.#array[i]);
         }
         return acc;
