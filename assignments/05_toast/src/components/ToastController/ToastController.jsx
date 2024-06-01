@@ -13,17 +13,9 @@ export default function ToastController() {
         <div className={styles.wrapper}>
             <h1 className={styles.title}>토스트 컨트롤러</h1>
             <div className={styles.inputContainer}>
-                <Input
-                    type='text'
-                    label='제목 (필수)'
-                    defaultValue='Scheduled: Catch up'
-                />
-                <Input
-                    type='text'
-                    label='내용 (필수)'
-                    defaultValue='Friday, February 10, 2023 at 5:57 PM'
-                />
-                <Input type='number' label='노출 시간(ms) (선택)' defaultValue={2000} />
+                <Input type='text' label='제목 (필수)' value={1} />
+                <Input type='text' label='내용 (필수)' value={2} />
+                <Input type='number' label='노출 시간(ms) (선택)' value={3} />
             </div>
             <button className={styles.button}>토스를 띄우기</button>
         </div>

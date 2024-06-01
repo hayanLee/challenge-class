@@ -1,4 +1,4 @@
-import ToastWrapper from './components/Toast/ToastWrapper';
+import ToastsContainer from './components/Toast/ToastsContainer';
 import ToastController from './components/ToastController';
 
 const styles = {
@@ -8,7 +8,7 @@ function App() {
     return (
         <div className={styles.container}>
             <ToastController />
-            <ToastWrapper />
+            <ToastsContainer />
         </div>
     );
 }

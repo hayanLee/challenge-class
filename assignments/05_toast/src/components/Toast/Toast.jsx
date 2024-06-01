@@ -6,13 +6,17 @@ const styles = {
     title: 'font-semibold',
 };
 
-function Toast() {
+export default function Toast({ id, title, content, time }) {
+    // useEffect(() => {
+    //     console.log('토스트 마운트');
+    //     setTimeout(() => {
+    //         console.log('시간 지남');
+    //     }, time);
+    // }, []);
     return (
         <div className={styles.wrapper}>
-            <h6 className={styles.title}>Scheduled: Catch up</h6>
-            <p>Friday, February 10, 2023 at 5:57 PM</p>
+            <h6 className={styles.title}>{title}</h6>
+            <p>{content}</p>
         </div>
     );
 }
-
-export default Toast;
