@@ -8,4 +8,3 @@
 
 -   tailwindCSS
 -   clsx
--   useScrollLock

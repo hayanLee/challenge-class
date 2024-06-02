@@ -1,4 +1,4 @@
-import React, { useId } from 'react';
+import React from 'react';
 
 const styles = {
     wrapper: 'flex flex-col gap-y-1.5',
@@ -6,15 +6,14 @@ const styles = {
     input: 'border px-4 py-2.5 rounded-md w-80',
 };
 
-export default function Input({ label, type, value, onChange }) {
-    const id = useId();
+export default function Input({ name, type, label, value, onChange }) {
     return (
         <div className={styles.wrapper}>
-            <label htmlFor={id} className={styles.label}>
+            <label htmlFor={name} className={styles.label}>
                 {label}
             </label>
             <input
-                id={id}
+                id={name}
                 type={type}
                 className={styles.input}
                 value={value}
